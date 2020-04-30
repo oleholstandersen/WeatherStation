@@ -17,7 +17,7 @@ char idBuf[UniqueIDsize+1];
 uint8_t hash = 0;
 uint8_t messageNo = 0;
 
-void setup() {
+void setup() {                                                                      
   rfSwitch.enableTransmit(RF_PIN);
   pinMode(LED_PIN, OUTPUT);
   BME280setup();
@@ -51,11 +51,11 @@ void loop() {
 
 void sendString(char *str) {
   int i = 0;
-  while(str[i] != '\0' || i <= 0xFF)
+  while(str[i] != '\0' && i <= 0xFF)
   {
     rfSwitch.send(
-      ((uint32_t)((hash|messageNo) << 16)) | ((uint32_t)i << 8) | ((uint32_t)str[i]),
-      24);
+      ((uint32_t)hash << 24) | ((uint32_t)messageNo << 16) | ((uint32_t)i << 8) | ((uint32_t)str[i]),
+      32);
      i++;
      delay(10);
   }

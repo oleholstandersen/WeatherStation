@@ -25,7 +25,7 @@ int main(int argc, char *argv[]) {
         if (rf.available()) {
             unsigned long value = rf.getReceivedValue();
             time_t now = time(nullptr);
-            if (value == latestValue && (difftime(now, latestTime) < 1.0)) {
+            if (value == latestValue && (difftime(now, latestTime) < 2.0)) {
                 printf("+");
             }
             else {

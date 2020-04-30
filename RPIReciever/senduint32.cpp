@@ -14,7 +14,7 @@ int main(int argc, char *argv[]) {
         printf("Usage: %s number");
         return -1000;
     }
-    long long int llVal = atoll(arg);
+    long long int llVal = atoll(argv[1]);
     if (llVal > ULONG_MAX) {
         printf("Number must be between 0 and %i", ULONG_MAX);
         return -1000;

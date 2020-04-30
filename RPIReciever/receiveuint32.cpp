@@ -23,20 +23,19 @@ int main(int argc, char *argv[]) {
     fflush(stdout);
     while(true) {
         if (rf.available()) {
-                unsigned long value = rf.getReceivedValue();
-                time_t now = time(nullptr);
-                if (value == latestValue && (difftime(now, latestTime) < 1.0)) {
-                    printf("+");
-		}
-                else {
-                    valueCount++;
-                    printf("\nReceived value %u: %08X", valueCount, value);
-                    latestValue = value;
-                    latestTime = time(nullptr);
-                }
-                fflush(stdout);
-                rf.resetAvailable();
-
-	}
+            unsigned long value = rf.getReceivedValue();
+            time_t now = time(nullptr);
+            if (value == latestValue && (difftime(now, latestTime) < 1.0)) {
+                printf("+");
+            }
+            else {
+                valueCount++;
+                printf("\nReceived value %08u: %08X (%c)", valueCount, value, value & 0xFF);
+                latestValue = value;
+                latestTime = time(nullptr);
+            }
+            fflush(stdout);
+            rf.resetAvailable();
+        }
     }
 }

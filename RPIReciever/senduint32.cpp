@@ -1,5 +1,8 @@
 #include "../rc-switch/RCSwitch.h"
 #include <stdlib.h>
+#include <stdio.h>
+#include <limits.h>
+
 
 #define RF_TX_PIN 0
 

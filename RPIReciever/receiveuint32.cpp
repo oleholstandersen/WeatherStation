@@ -30,7 +30,10 @@ int main(int argc, char *argv[]) {
             }
             else {
                 valueCount++;
-                printf("\nReceived value %08u: %08X (%c)", valueCount, value, value & 0xFF);
+                printf("\nReceived value %08u: %08X", valueCount, value);
+                if ((value & 0xFF) > 0X1F) {
+                    printf("(%c)", value & 0xFF);
+                }
                 latestValue = value;
                 latestTime = time(nullptr);
             }
